@@ -1,0 +1,210 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--surface);
+  --font-sans: "Cairo", system-ui, sans-serif;
+  --font-display: "Tajawal", "Cairo", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --radius: 1rem;
+  /* Dark holographic palette */
+  --background: oklch(0.14 0.02 260);
+  --foreground: oklch(0.95 0.01 250);
+  --surface: oklch(0.19 0.025 260);
+  --card: oklch(0.19 0.025 260);
+  --card-foreground: oklch(0.95 0.01 250);
+  --popover: oklch(0.19 0.025 260);
+  --popover-foreground: oklch(0.95 0.01 250);
+  --primary: oklch(0.65 0.19 255);          /* electric blue #3b82f6 */
+  --primary-foreground: oklch(0.99 0 0);
+  --accent: oklch(0.68 0.22 305);           /* cyber purple #a855f7 */
+  --accent-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.24 0.03 260);
+  --secondary-foreground: oklch(0.95 0.01 250);
+  --muted: oklch(0.24 0.03 260);
+  --muted-foreground: oklch(0.7 0.02 255);
+  --destructive: oklch(0.65 0.24 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.95 0.01 250 / 0.08);
+  --input: oklch(0.95 0.01 250 / 0.1);
+  --ring: oklch(0.65 0.19 255);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    background-color: var(--color-background);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@utility glass-panel {
+  background: color-mix(in oklab, var(--surface) 70%, transparent);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgb(255 255 255 / 0.06);
+}
+
+@utility perspective-1000 {
+  perspective: 1000px;
+}
+
+@utility card-3d {
+  transition:
+    transform 0.5s var(--ease-out-expo),
+    box-shadow 0.5s var(--ease-out-expo);
+  transform-style: preserve-3d;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: rotateX(6deg) rotateY(-6deg) translateY(-10px);
+      box-shadow:
+        -18px 22px 45px rgb(0 0 0 / 0.55),
+        0 0 24px color-mix(in oklab, var(--primary) 30%, transparent);
+    }
+  }
+}
+
+@utility gradient-text {
+  background: linear-gradient(to left, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotateX(10deg) rotateY(-5deg); }
+  50% { transform: translateY(-18px) rotateX(14deg) rotateY(2deg); }
+}
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.3; filter: blur(40px); }
+  50% { opacity: 0.6; filter: blur(60px); }
+}
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@utility animate-float { animation: float 8s ease-in-out infinite; }
+@utility animate-glow-pulse { animation: glow-pulse 6s ease-in-out infinite; }
+@utility animate-rise-in { animation: rise-in 0.7s var(--ease-out-expo) both; }
+
+@utility hero-gallery {
+  @media (hover: hover) and (pointer: fine) {
+    &:has(.hero-image:hover) .hero-image:not(:hover) {
+      flex: 0.75;
+      opacity: 0.65;
+      filter: grayscale(0.35);
+    }
+  }
+}
+
+@utility hero-image {
+  transition: flex 0.5s var(--ease-out-expo), opacity 0.5s var(--ease-out-expo), filter 0.5s var(--ease-out-expo);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      flex: 1.8;
+      z-index: 10;
+    }
+  }
+}
+
+@utility hero-card-zoom {
+  transition: transform 0.5s var(--ease-out-expo);
+  @media (hover: hover) and (pointer: fine) {
+    .hero-image:hover & {
+      transform: scale(1.1);
+    }
+  }
+}
+
+@utility hero-overlay-fade {
+  transition: opacity 0.5s ease;
+  @media (hover: hover) and (pointer: fine) {
+    .hero-image:hover & {
+      opacity: 0.9;
+    }
+  }
+}
+
+@utility hero-label-reveal {
+  transition: transform 0.5s var(--ease-out-expo), opacity 0.5s var(--ease-out-expo);
+  @media (hover: hover) and (pointer: fine) {
+    .hero-image:hover & {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+@utility card-glow {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  @media (hover: hover) and (pointer: fine) {
+    .group:hover & {
+      opacity: 1;
+    }
+  }
+}
+
+@utility card-image-zoom {
+  transition: transform 0.5s var(--ease-out-expo);
+  @media (hover: hover) and (pointer: fine) {
+    .group:hover & {
+      transform: scale(1.05);
+    }
+  }
+}
+
+@utility card-cta-hover {
+  transition: background-color 0.3s ease;
+  @media (hover: hover) and (pointer: fine) {
+    .group:hover & {
+      background-color: var(--primary);
+    }
+  }
+}
