@@ -9,7 +9,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preload" as="image" href="/sonic-logo.png">
-    <link rel="stylesheet" href="/assets/styles-HOYzzuOm.css" data-precedence="default">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&amp;family=Tajawal:wght@500;700;800;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
         data-precedence="default">
@@ -23,16 +22,11 @@
     <meta name="twitter:title" content="سونيك — اشحن اشتراكاتك الرقمية بأمان">
     <meta name="twitter:description"
         content="اشترِ ChatGPT Plus, Gemini Advanced, Lovable وبطاقات الهدايا بوسائل دفع محلية. تسليم فوري.">
-    <meta property="og:image"
-        content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e16a0aff-beff-4fff-a08a-22ee8e5184db/id-preview-33135695--840e8fc5-b6bb-4c1e-806f-7c92d22b9c95.lovable.app-1783791388316.png">
-    <meta name="twitter:image"
-        content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e16a0aff-beff-4fff-a08a-22ee8e5184db/id-preview-33135695--840e8fc5-b6bb-4c1e-806f-7c92d22b9c95.lovable.app-1783791388316.png">
+
     <script bis_use="true" type="text/javascript" charset="utf-8" nonce=""
         data-dynamic-id="e9e433f6-3e14-4b29-b2d1-0fd4f51c75ff"
         src="chrome-extension://almalgbpmcfpdaopimbdchdliminoign/executors/200.js"></script>
-    <script bis_use="true" type="text/javascript" charset="utf-8" nonce=""
-        data-dynamic-id="a5f529f2-a999-4398-9794-2608b9c8294b"
-        src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/101.js"></script>
+
     <meta name="description"
         content="اشترِ ChatGPT Plus, Gemini Advanced, Lovable وبطاقات الهدايا بوسائل دفع محلية. تسليم فوري.">
     <link rel="modulepreload" href="/assets/index-DXZVMPb4.js">
@@ -117,8 +111,6 @@
         </div>
     </footer>
     </div>
-    <script type="module" async="" src="/assets/index-DXZVMPb4.js"></script>
-    <script src="https://cdn.gpteng.co/lovable.js" type="module"></script>
 </body>
 
 </html>
