@@ -8,7 +8,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preload" as="image" href="/sonic-logo.png">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&amp;family=Tajawal:wght@500;700;800;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
         data-precedence="default">
