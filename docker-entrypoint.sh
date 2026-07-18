@@ -12,4 +12,6 @@ php artisan optimize:clear
 
 echo "Starting Apache..."
 
+php artisan db:seed --force
+
 exec apache2-foreground
