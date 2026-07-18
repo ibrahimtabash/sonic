@@ -41,7 +41,7 @@ RUN apt-get update && apt-get install -y \
         zip \
         gd \
         opcache \
-    && a2enmod rewrite \
+    && a2enmod rewrite headers expires \
     && rm -rf /var/lib/apt/lists/*
 
 
@@ -52,11 +52,11 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 
 
-# Copy project
+# Copy Laravel project
 COPY . .
 
 
-# Install PHP dependencies
+# Install PHP packages
 RUN composer install \
     --no-dev \
     --optimize-autoloader \
@@ -64,8 +64,12 @@ RUN composer install \
     --prefer-dist
 
 
-# Copy frontend assets
+# Copy Vite production files
 COPY --from=frontend /app/public/build ./public/build
+
+
+# Check Vite files exist
+RUN ls -la public/build
 
 
 # Storage permissions
@@ -75,7 +79,7 @@ RUN mkdir -p storage/framework/{cache,sessions,views} \
     && chmod -R 775 storage bootstrap/cache
 
 
-# Apache DocumentRoot
+# Apache DocumentRoot -> Laravel public
 RUN sed -ri \
     -e 's!/var/www/html!/var/www/html/public!g' \
     /etc/apache2/sites-available/*.conf \
@@ -83,15 +87,17 @@ RUN sed -ri \
     /etc/apache2/conf-available/*.conf
 
 
+# Laravel Apache config
 RUN printf '<Directory /var/www/html/public>\n\
-AllowOverride All\n\
-Require all granted\n\
+    AllowOverride All\n\
+    Require all granted\n\
+    Options FollowSymLinks\n\
 </Directory>\n' \
 > /etc/apache2/conf-available/laravel.conf \
 && a2enconf laravel
 
 
-# Add startup script
+# Startup script
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
