@@ -28,8 +28,7 @@
 
     <meta name="description"
         content="اشترِ ChatGPT Plus, Gemini Advanced, Lovable وبطاقات الهدايا بوسائل دفع محلية. تسليم فوري.">
-    <link rel="modulepreload" href="/assets/index-DXZVMPb4.js">
-    <link rel="modulepreload" href="/assets/routes-Bn8DxzA3.js">
+
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
